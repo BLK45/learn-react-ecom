@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const cloudinary = require ('cloudinary').v2;
 
 exports.create = async (req, res) => {
   try {
@@ -219,3 +220,32 @@ exports.searchFilter = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+    cloudinary.config({ 
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+        api_key: process.env.CLOUDINARY_API_KEY, 
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+
+exports.createImages = async (req, res)=>{
+  try {
+    console.log(req.body)
+    const result = await cloudinary.uploader.upload(req.body.image,{
+      public_id: `${Date.now()}`,
+      resource_type: 'auto',
+      folder: 'Ecom2025'
+    })
+    res.send(result)
+  } catch (err) {
+    console.log(err)
+    res.send.status(500).json({ message: "Server error" });
+  }
+}
+exports.removeImage = async (req, res)=>{
+  try {
+    res.send('Hello Delete Image')
+  } catch (err) {
+    console.log(err)
+    res.send.status(500).json({ message: "Server error" });
+  }
+}
