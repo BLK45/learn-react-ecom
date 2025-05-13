@@ -24,3 +24,13 @@ export const uploadFile = async(token, form)=>{
         }
     })
 }
+
+export const removeFiles = async(token, public_id)=>{
+    return axios.post('http://localhost:5000/api/removeimages',{
+        public_id
+    },{
+        headers:{
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
