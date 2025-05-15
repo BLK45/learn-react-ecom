@@ -3,6 +3,7 @@ import useEcomStore from "../../store/ecom-store";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Uploadfile from "./Uploadfile";
+import { Link } from "react-router-dom";
 
 const initialState = {
   title: "Core i7",
@@ -19,7 +20,7 @@ const FormProduct = () => {
   const categories = useEcomStore((state) => state.categories);
   const getProduct = useEcomStore((state) => state.getProduct);
   const products = useEcomStore((state) => state.products);
-//   console.log(products);
+  //   console.log(products);
   const [form, setForm] = useState(initialState);
 
   useEffect(() => {
@@ -98,7 +99,7 @@ const FormProduct = () => {
         </select>
         <hr />
 
-          {/* Upload file */}
+        {/* Upload file */}
         <Uploadfile form={form} setForm={setForm} />
 
         <button className="bg-blue-500">เพิ่มข้อมูลสินค้า</button>
@@ -108,6 +109,7 @@ const FormProduct = () => {
           <thead>
             <tr>
               <th scope="col">No.</th>
+              <th scope="col">รูปภาพ</th>
               <th scope="col">ชื่อสินค้า</th>
               <th scope="col">รายละเลียด</th>
               <th scope="col">ราคา</th>
@@ -118,27 +120,37 @@ const FormProduct = () => {
             </tr>
           </thead>
           <tbody>
-            {
-                products.map((item, index) =>{
-                    // console.log(item)
-                    return (
-                        <tr key={item.id}>
-                            <th scope="row">{index+1}</th>
-                            <td>{item.title}</td>
-                            <td>{item.description}</td>
-                            <td>{item.price}</td>
-                            <td>{item.quantity}</td>
-                            <td>{item.sold}</td>
-                            <td>{item.updatedAt}</td>
-                            <td>
-                                <p>แก้ไข</p>
-                                <p>ลบ</p>
-                            </td>
-                        </tr>
-                    )
-                })
-            }
-            
+            {products.map((item, index) => {
+              // console.log(item)
+              return (
+                <tr key={item.id}>
+                  <th scope="row">{index + 1}</th>
+                  <td>
+                    {
+                      item.images.length > 0
+                      ? <img 
+                      className="w-24 h-24 rounded-lg shadow-md"
+                      src={item.images[0].url} />
+                      : <div className="w-24 h-24 bg-gray-200 rounded-md flex items-center justify-center shadow-md">
+                        No Image
+                      </div>
+                    }
+                  </td>
+                  <td>{item.title}</td>
+                  <td>{item.description}</td>
+                  <td>{item.price}</td>
+                  <td>{item.quantity}</td>
+                  <td>{item.sold}</td>
+                  <td>{item.updatedAt}</td>
+                  <td>
+                    <p>
+                      <Link className='bg-yellow-500 rounded-md p-1 shadow-md' to={"/admin/product/" + item.id}>แก้ไข</Link>
+                    </p>
+                    <p>ลบ</p>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </form>
