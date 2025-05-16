@@ -1,4 +1,4 @@
-import { createProduct } from "../../api/Product";
+import { createProduct, deleteProduct } from "../../api/Product";
 import useEcomStore from "../../store/ecom-store";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -6,10 +6,10 @@ import Uploadfile from "./Uploadfile";
 import { Link } from "react-router-dom";
 
 const initialState = {
-  title: "Core i7",
-  description: "desc",
-  price: 200,
-  quantity: 20,
+  title: "",
+  description: "",
+  price: 0,
+  quantity: 0,
   categoryId: "",
   images: [],
 };
@@ -41,11 +41,26 @@ const FormProduct = () => {
     try {
       const res = await createProduct(token, form);
       console.log(res);
+      setForm(initialState)
+      getProduct(token)
       toast.success(`เพิ่มข้อมูล ${res.data.title} สำเร็จ`);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const handleDelete = async(id) => { 
+    if(window.confirm('จะลบจริงๆหรอ')){
+      try {
+        const res = await deleteProduct(token, id)
+        console.log(res)
+        toast.success(`ลบข้อมูล ${res.data.title} สำเร็จ`);
+        getProduct(token)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
 
   return (
     <div className="container mx-auto p-4 bg-white shadow-md">
@@ -142,11 +157,14 @@ const FormProduct = () => {
                   <td>{item.quantity}</td>
                   <td>{item.sold}</td>
                   <td>{item.updatedAt}</td>
-                  <td>
+                  <td className="flex gap-2">
                     <p>
                       <Link className='bg-yellow-500 rounded-md p-1 shadow-md' to={"/admin/product/" + item.id}>แก้ไข</Link>
                     </p>
-                    <p>ลบ</p>
+                    <p
+                    className='bg-red-500 rounded-md p-1 shadow-md'
+                    onClick={()=>handleDelete(item.id)}
+                    >ลบ</p>
                   </td>
                 </tr>
               );
