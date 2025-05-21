@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ProductCard from "../components/Card/ProductCard";
 import useEcomStore from './../store/ecom-store';
+import SearchCard from "../components/Card/SearchCard";
 
 const Shop = () => {
 
@@ -15,7 +16,7 @@ const Shop = () => {
     <div className="flex">
       {/* Search bar */}
       <div className="w-1/4 p-4 bg-gray-100 h-screen">
-        Search bar
+        <SearchCard />
       </div>
       {/* Product */}
       <div className="w-1/2 p-4 h-screen overflow-y-auto">
