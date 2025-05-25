@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import ProductCard from "../components/Card/ProductCard";
 import useEcomStore from './../store/ecom-store';
 import SearchCard from "../components/Card/SearchCard";
+import CartCard from './../components/Card/CartCard';
 
 const Shop = () => {
 
@@ -10,7 +11,7 @@ const Shop = () => {
 
   useEffect(()=>{
     getProduct()
-  },[])
+  }, [])
 
   return (
     <div className="flex">
@@ -32,7 +33,7 @@ const Shop = () => {
       </div>
       {/* Cart */}
       <div className="w-1/4 p-4 bg-gray-100 h-screen overflow-y-auto">
-        Cart
+        <CartCard />
       </div>
     </div>
   );

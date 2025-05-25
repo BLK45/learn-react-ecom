@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import useEcomStore from '../../store/ecom-store'
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import set from './../../../node_modules/rc-util/es/utils/set';
 
 const SearchCard = () => {
 
@@ -51,7 +50,7 @@ const SearchCard = () => {
         }
         setCategorySelected(inState)
         
-        if(inState>0){
+        if(inState.length > 0){
             actionSearchFilters({ category: inState})
         }else{
             getProduct()
