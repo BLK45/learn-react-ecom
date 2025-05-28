@@ -56,7 +56,7 @@ const SearchCard = () => {
             getProduct()
         }
     }
-    console.log(categorySelected)
+    // console.log(categorySelected)
     // step 3 Search by Price
     useEffect(()=>{
         actionSearchFilters({ price })
