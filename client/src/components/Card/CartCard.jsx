@@ -12,7 +12,6 @@ const CartCard = () => {
     (state) => state.actionRemoveProduct
   );
   const getTotalPrice = useEcomStore((state) => state.getTotalPrice);
-  console.log(carts);
 
   return (
     <div>
@@ -69,7 +68,7 @@ const CartCard = () => {
                 </button>
               </div>
               {/* Right */}
-              <div className="font-bold text-blue-500">{item.price}</div>
+              <div className="font-bold text-blue-500">{item.price * item.count}</div>
             </div>
           </div>
         ))}
