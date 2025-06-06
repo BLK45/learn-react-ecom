@@ -23,3 +23,11 @@ export const saveAddress = async (token, address) => {
     },
   });
 };
+export const saveOrder = async (token, payload) => {
+  // code body
+  return axios.post("http://localhost:5000/api/user/order", payload, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

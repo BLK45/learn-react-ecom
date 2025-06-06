@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `order` MODIFY `amount` INTEGER NOT NULL DEFAULT 0,
+    MODIFY `currentcy` VARCHAR(191) NOT NULL DEFAULT 'THB',
+    MODIFY `status` VARCHAR(191) NOT NULL DEFAULT 'pending',
+    MODIFY `stripePaymentId` VARCHAR(191) NOT NULL DEFAULT '';
