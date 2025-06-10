@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import Shop from "../pages/Shop";
 import Cart from "../pages/Cart";
-import History from "../pages/History";
 import CheckOut from "../pages/CheckOut";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
@@ -19,6 +18,7 @@ import ProtectRouteUser from "./ProtectRouteUser";
 import ProtectRouteAdmin from "./ProtectRouteAdmin";
 import EditProduct from "../pages/admin/EditProduct";
 import Payment from "../pages/user/Payment";
+import History from "./../pages/user/History";
 
 const router = createBrowserRouter([
   {
@@ -28,33 +28,34 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "shop", element: <Shop /> },
       { path: "cart", element: <Cart /> },
-      { path: "history", element: <History /> },
+
       { path: "checkout", element: <CheckOut /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
     ],
   },
   {
-    path: '/admin',
+    path: "/admin",
     //element: <LayoutAdmin />,
     element: <ProtectRouteAdmin element={<LayoutAdmin />} />,
     children: [
-      { index: true, element:<Dashboard /> },
-      { path: 'category', element:<Category /> },
-      { path: 'product', element:<Product /> },
-      { path: 'product/:id', element:<EditProduct /> },
-      { path: 'manage', element:<Manage /> },
-    ]
+      { index: true, element: <Dashboard /> },
+      { path: "category", element: <Category /> },
+      { path: "product", element: <Product /> },
+      { path: "product/:id", element: <EditProduct /> },
+      { path: "manage", element: <Manage /> },
+    ],
   },
   {
-    path: '/user',
+    path: "/user",
     // element: <LayoutUser />,
     element: <ProtectRouteUser element={<LayoutUser />} />,
     children: [
-      { index: true, element:<HomeUser /> },
-      { path: 'payment', element:<Payment /> },
-    ]
-  }
+      { index: true, element: <HomeUser /> },
+      { path: "payment", element: <Payment /> },
+      { path: "history", element: <History /> },
+    ],
+  },
 ]);
 
 const AppRoutes = () => {

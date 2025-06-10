@@ -19,7 +19,7 @@ const Payment = () => {
     .catch((err)=>{
       console.log(err);
     })
-  }, [])
+  }, [token])
 
     const appearance = {
     theme: "stripe",
