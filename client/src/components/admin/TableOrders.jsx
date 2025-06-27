@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useEcomStore from "./../../store/ecom-store";
 import { getOrdersAdmin, changeOrderStatus } from "../../api/admin";
 import { toast } from "react-toastify";
+import { numberFormat } from "../../utils/number";
 
 const TableOrders = () => {
   const token = useEcomStore((state) => state.token);
@@ -73,12 +74,14 @@ const TableOrders = () => {
                   <td className="px-2 py-4">
                     {item.products?.map((product, index) => (
                       <li key={index}>
-                        {product.product.title}
-                        <span>{product.count * product.price}</span>
+                        {product.product.title}{" "}
+                        <span className="text-sm">
+                          {product.count} X {numberFormat(product.price)}
+                          </span>
                       </li>
                     ))}
                   </td>
-                  <td>{item.cartTotal}</td>
+                  <td>{numberFormat(item.cartTotal)}</td>
                   <td>
                     <span className={`${getStatusColor(item.orderStatus)} px-2 py-1 rounded-full`}>
                         {item.orderStatus}

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Uploadfile from "./Uploadfile";
 import { Link } from "react-router-dom";
 import { SquarePen, Trash2 } from 'lucide-react';
+import { numberFormat } from './../../utils/number';
 
 const initialState = {
   title: "",
@@ -161,7 +162,7 @@ const FormProduct = () => {
                   </td>
                   <td>{item.title}</td>
                   <td>{item.description}</td>
-                  <td>{item.price}</td>
+                  <td>{numberFormat(item.price)}</td>
                   <td>{item.quantity}</td>
                   <td>{item.sold}</td>
                   <td>{item.updatedAt}</td>
