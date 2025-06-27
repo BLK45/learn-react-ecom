@@ -14,7 +14,7 @@ const HistoryCard = () => {
   const hdlGetOrders = (token) => {
     getOrders(token)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setOrders(res.data.orders);
       })
       .catch((err) => {
@@ -29,7 +29,7 @@ const HistoryCard = () => {
       <div>
         {/* Card */}
         {orders?.map((item, index) => {
-          console.log(item)
+          // console.log(item)
           return (
             <div key={index} className="bg-gray-100 p-4 rounded-md shadow-md">
               {/* header */}
@@ -54,9 +54,9 @@ const HistoryCard = () => {
                   <tbody>
                     {
                       item?.products.map((product, index)=>{
-                        console.log(product)
+                        // console.log(product)
                         return (
-                          <tr>
+                          <tr key={index}>
                             <td>{product.product.title}</td>
                             <td>{product.product.price}</td>
                             <td>{product.count}</td>

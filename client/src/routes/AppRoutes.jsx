@@ -19,6 +19,7 @@ import ProtectRouteAdmin from "./ProtectRouteAdmin";
 import EditProduct from "../pages/admin/EditProduct";
 import Payment from "../pages/user/Payment";
 import History from "./../pages/user/History";
+import ManageOrders from "../pages/admin/ManageOrders";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       { path: "product", element: <Product /> },
       { path: "product/:id", element: <EditProduct /> },
       { path: "manage", element: <Manage /> },
+      { path: "orders", element: <ManageOrders /> },
     ],
   },
   {
