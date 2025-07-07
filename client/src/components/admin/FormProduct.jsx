@@ -6,6 +6,7 @@ import Uploadfile from "./Uploadfile";
 import { Link } from "react-router-dom";
 import { SquarePen, Trash2 } from 'lucide-react';
 import { numberFormat } from './../../utils/number';
+import { dateFormat } from './../../utils/dateformat';
 
 const initialState = {
   title: "",
@@ -165,7 +166,7 @@ const FormProduct = () => {
                   <td>{numberFormat(item.price)}</td>
                   <td>{item.quantity}</td>
                   <td>{item.sold}</td>
-                  <td>{item.updatedAt}</td>
+                  <td>{dateFormat(item.updated)}</td>
                   <td className="flex gap-2">
                     <p className='bg-yellow-500 rounded-md p-1 shadow-md hover:scale-105 hover:-translate-y-1 hover:duration-200'>
                       <Link  
