@@ -21,3 +21,10 @@ export const changeOrderStatus = async (token, orderId, orderStatus) => {
     }
   );
 };
+export const getListAllUsers = async (token) => {
+  return axios.get("http://localhost:5000/api/users", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
